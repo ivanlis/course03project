@@ -78,3 +78,7 @@ message("Read ", nrow(activityLabels), " activities.")
 bigDataSet$activitylabel <- 
     factor(x = rbind(yTrain, yTest)[, 1], levels = activityLabels[, 1], labels = activityLabels[, 2])
 
+# Store the merged data as a CSV file.
+outBigCsvFile <- "merged_dataset.csv"
+write.csv(x = bigDataSet, file = outBigCsvFile, row.names = FALSE)
+
