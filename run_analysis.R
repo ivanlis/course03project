@@ -42,6 +42,30 @@ message("Reading train y from ", yTrainFile, "...")
 yTrain <- read.table(yTrainFile, colClasses = "character")
 message("Read ", nrow(yTrain), " elements.")
 
+## Extracting only the features we're interested in 
+## (the mean and standard deviation of each type of measurement)
+# Read the feature strings.
+featuresDescFile <- paste(datasetPath, "/features.txt", sep = "")
+message("Reading feature names from ", featuresDescFile, "...")
+featureNames <- read.table(featuresDescFile, colClasses = "character")
+message("Read ", nrow(featureNames), " feature names.")
+# Find only those feature names containing "mean(" of "std("
+# (the parenthesis is included because there are some named "meanFreq")
+meanAndStd <- grep("(mean|std)\\(", featureNames[, 2])
+# We will use meanAndStd to extract the columns of interested.
+# By now, edit and set the column names.
+# Make valid unique names and remove dots from them.
+featureNamesPrepared <- gsub("[\\._]", "", make.names(featureNames[, 2], unique = TRUE))
+names(xTrain) <- featureNamesPrepared
+names(xTest) <- featureNamesPrepared
+
+
+## Build the union of the train and test datasets
+## (only needed columns: means and standard deviations)
+bigDataSet <- rbind(xTrain[, meanAndStd], xTest[, meanAndStd])
+
+
+## Assigning descriptive activity names.
 activityLabelsFile <- paste(datasetPath, "/activity_labels.txt", sep = "")
 message("Reading activity labels from ", activityLabelsFile, sep = "")
 activityLabels <- read.table(activityLabelsFile, sep=" ", colClasses = "character", 
@@ -50,8 +74,7 @@ message("Read ", nrow(activityLabels), " activities.")
 
 # Represent the test and train labels as factor variables
 # Add them to the measurements
-xTest$activitylabel <- factor(x = yTest[,1], levels = activityLabels[, 1], labels = activityLabels[, 2])
-xTrain$activitylabel <- factor(x = yTrain[,1], levels = activityLabels[, 1], labels = activityLabels[, 2])
 
-# Build the union of the train and test datasets
-bigDataSet <- bind_rows(xTrain, xTest)
+bigDataSet$activitylabel <- 
+    factor(x = rbind(yTrain, yTest)[, 1], levels = activityLabels[, 1], labels = activityLabels[, 2])
+
