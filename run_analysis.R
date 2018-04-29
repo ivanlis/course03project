@@ -65,6 +65,22 @@ names(xTest) <- featureNamesPrepared
 bigDataSet <- rbind(xTrain[, meanAndStd], xTest[, meanAndStd])
 
 
+## Adding data on subjects
+# Read the subject ids for each measurement.
+subjectTestFile <- paste(datasetTestPath, "/subject_test.txt", sep = "")
+message("Reading test subject ids from ", subjectTestFile, "...")
+subjectsTest <- read.table(subjectTestFile, colClasses = "integer")
+message("Read ", nrow(subjectsTest), " elements.")
+
+subjectTrainFile <- paste(datasetTrainPath, "/subject_train.txt", sep = "")
+message("Reading train subject ids from ", subjectTrainFile, "...")
+subjectsTrain <- read.table(subjectTrainFile, colClasses = "integer")
+message("Read ", nrow(subjectsTrain), " elements.")
+
+# Represent the test and train subjects as factor variables
+allSubjectIds <- rbind(subjectsTrain, subjectsTest)[, 1]
+bigDataSet$subjectid <- as.factor(allSubjectIds)
+
 ## Assigning descriptive activity names.
 activityLabelsFile <- paste(datasetPath, "/activity_labels.txt", sep = "")
 message("Reading activity labels from ", activityLabelsFile, sep = "")
@@ -72,13 +88,25 @@ activityLabels <- read.table(activityLabelsFile, sep=" ", colClasses = "characte
                              header = FALSE)
 message("Read ", nrow(activityLabels), " activities.")
 
+
 # Represent the test and train labels as factor variables
 # Add them to the measurements
-
 bigDataSet$activitylabel <- 
     factor(x = rbind(yTrain, yTest)[, 1], levels = activityLabels[, 1], labels = activityLabels[, 2])
+
 
 # Store the merged data as a CSV file.
 outBigCsvFile <- "merged_dataset.csv"
 write.csv(x = bigDataSet, file = outBigCsvFile, row.names = FALSE)
+
+
+## Create and independent data set with average values of each variable
+## for each activity and each subject
+library(dplyr)
+summaryDataSet <-
+    bigDataSet %>% group_by(activitylabel, subjectid) %>% summarize_all(funs(mean))
+
+# Store the summarized data set as a CSV file
+outSummaryCsvFile <- "summary_dataset.csv"
+write.csv(x = summaryDataSet, file = outSummaryCsvFile, row.names = FALSE)
 
