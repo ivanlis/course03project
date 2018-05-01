@@ -106,7 +106,7 @@ units: radians per second
   - *fBodyGyrostdX*
   - *fBodyGyrostdY*
   - *fBodyGyrostdZ*
- - Means and standard deviations of the magnitudes
+- Means and standard deviations of the magnitudes
 of the aforementioned 3-dimensional signals in the frequency domain (Euclidean norm):
   - *fBodyAccMagmean*, units: g
   - *fBodyAccMagstd*, units: g
