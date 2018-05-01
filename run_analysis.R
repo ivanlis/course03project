@@ -110,7 +110,7 @@ library(dplyr)
 summaryDataSet <-
     bigDataSet %>% group_by(activitylabel, subjectid) %>% summarize_all(funs(mean))
 
-# Store the summarized data set as a CSV file
-outSummaryCsvFile <- "summary_dataset.csv"
-write.csv(x = summaryDataSet, file = outSummaryCsvFile, row.names = FALSE)
-
+# Store the summarized data set as a TXT file
+outSummaryTxtFile <- "summary_dataset.txt"
+#write.csv(x = summaryDataSet, file = outSummaryCsvFile, row.names = FALSE)
+write.table(x = summaryDataSet, file=outSummaryTxtFile, row.names = FALSE)

@@ -6,7 +6,7 @@ The project results are presented in five files:
 1. This *README.md*
 2. *CodeBook.md*: the code book, i.e. the document describing the built dataset
 3. *run_analysis.R*: the R script used to generate the result
-4. *summary_dataset.csv*: result (summarized) dataset
+4. *summary_dataset.txt*: result (summarized) dataset
 5. *merged_dataset.csv*: the data before summarizing
 
 
@@ -42,7 +42,7 @@ a descriptive factor variable to *bigDataSet*.
 9. *bigDataSet* is stored in the *merged_dataset.csv* file.
 10. *bigDataSet* is grouped by the pair (activity label, subject id) and the average
 of every feature variable is computed based on this grouping. The result is stored
-in *summaryDataSet*, which is written to *summary_dataset.csv*.
+in *summaryDataSet*, which is written to *summary_dataset.txt*.
 
 Ivan Lysiuchenko, May 2018
 
