@@ -20,7 +20,7 @@ in the *summary_dataset.csv* file.
 
 ### Variables
 
-The present datasets consists of summarized (averaged by activity type and subject) 
+The present dataset consists of summarized (averaged by activity type and subject) 
 versions of some variables from the original study.
 The list of the 68 columns follows.
 
@@ -116,6 +116,9 @@ of the aforementioned 3-dimensional signals in the frequency domain (Euclidean n
   - *fBodyBodyGyroMagstd*, units: rad/s
   - *fBodyBodyGyroJerkMagmean*, units: rad/s^3
   - *fBodyBodyGyroJerkMagstd*, units: rad/s^3
+  
+
+Ivan Lysiuchenko, May 2018
 
 __References__
 

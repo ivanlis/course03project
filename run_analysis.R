@@ -1,3 +1,6 @@
+## Create a directory for the source data,
+## download and unpack the data we are going to use.
+
 dataPath <- "./data"
 
 if (!file.exists(dataPath))
@@ -28,6 +31,7 @@ yTestFile <- paste(datasetTestPath, "/y_test.txt", sep = "")
 xTrainFile <- paste(datasetTrainPath, "/X_train.txt", sep = "")
 yTrainFile <- paste(datasetTrainPath, "/y_train.txt", sep = "")
 
+## Read features and labels.
 message("Reading test x from ", xTestFile, "...")
 xTest <- read.table(xTestFile, sep = "", colClasses = "numeric", header = FALSE)
 message("Read ", nrow(xTest), " measurements.")
@@ -42,7 +46,7 @@ message("Reading train y from ", yTrainFile, "...")
 yTrain <- read.table(yTrainFile, colClasses = "character")
 message("Read ", nrow(yTrain), " elements.")
 
-## Extracting only the features we're interested in 
+## Extract only the features we're interested in 
 ## (the mean and standard deviation of each type of measurement)
 # Read the feature strings.
 featuresDescFile <- paste(datasetPath, "/features.txt", sep = "")
@@ -65,7 +69,7 @@ names(xTest) <- featureNamesPrepared
 bigDataSet <- rbind(xTrain[, meanAndStd], xTest[, meanAndStd])
 
 
-## Adding data on subjects
+## Add data on subjects
 # Read the subject ids for each measurement.
 subjectTestFile <- paste(datasetTestPath, "/subject_test.txt", sep = "")
 message("Reading test subject ids from ", subjectTestFile, "...")
@@ -81,7 +85,7 @@ message("Read ", nrow(subjectsTrain), " elements.")
 allSubjectIds <- rbind(subjectsTrain, subjectsTest)[, 1]
 bigDataSet$subjectid <- as.factor(allSubjectIds)
 
-## Assigning descriptive activity names.
+## Assign descriptive activity names.
 activityLabelsFile <- paste(datasetPath, "/activity_labels.txt", sep = "")
 message("Reading activity labels from ", activityLabelsFile, sep = "")
 activityLabels <- read.table(activityLabelsFile, sep=" ", colClasses = "character", 
