@@ -1,4 +1,4 @@
 data/
 .Rhistory
-*.csv
+#*.csv
 _names.txt

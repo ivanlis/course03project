@@ -37,8 +37,8 @@ and unpacked into the *data/* directory.
 (taking only the columns corresponding to the features from (5)).
 7. Subject ids for each measurement in the train and test data are loaded and merged.
 They are added as an extra column to *bigDataSet*.
-8. Activity labels (as strings) are loaded. They are added as a descriptive factor variable
-to *bigDataSet*.
+8. Activity labels (as strings) are loaded. They are used to include the labels as 
+a descriptive factor variable to *bigDataSet*.
 9. *bigDataSet* is stored in the *merged_dataset.csv* file.
 10. *bigDataSet* is grouped by the pair (activity label, subject id) and the average
 of every feature variable is computed based on this grouping. The result is stored
