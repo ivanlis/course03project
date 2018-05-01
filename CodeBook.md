@@ -20,10 +20,10 @@ in the *summary_dataset.csv* file.
 
 ### Variables
 
-Its variables are the summarized (average by activity type and subject) 
-versions of some variables from the original study (see __Study design__).
-
+The present datasets consists of summarized (averaged by activity type and subject) 
+versions of some variables from the original study.
 The list of the 68 columns follows.
+
 __NOTE__: all the continuous variables are __normalized__ to [-1, 1], as they come from the original
 authors. For their raw values, see the original dataset.
 
