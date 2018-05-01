@@ -44,6 +44,8 @@ a descriptive factor variable to *bigDataSet*.
 of every feature variable is computed based on this grouping. The result is stored
 in *summaryDataSet*, which is written to *summary_dataset.txt*.
 
+The R script was run on a GNU/Linux (Ubuntu) machine, R version 3.4.4.
+
 Ivan Lysiuchenko, May 2018
 
 __References__
