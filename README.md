@@ -32,7 +32,9 @@ and unpacked into the *data/* directory.
 2. Train features and labels are loaded.
 3. Test features and labels are loaded.
 4. Feature strings (variable names) are loaded, cleaned up in order to be used as column names in R.
-5. Only the feature strings containing "mean(" or "std(" are selected.
+5. Only the feature strings containing "mean(" or "std(" are selected.  
+__NOTE__: the features containing "meanFreq" are not included, as they don't describe 
+measured parameters, but the frequency domain obtained with the Fourier transform.
 6. *bigDataSet* is built as a union of the train and test feature data frames
 (taking only the columns corresponding to the features from (5)).
 7. Subject ids for each measurement in the train and test data are loaded and merged.
